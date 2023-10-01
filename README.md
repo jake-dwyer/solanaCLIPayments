@@ -56,10 +56,11 @@ The script will read the CSV file, confirm the transactions, and log the results
 
 The CSV file should have the following format:
 
-RECIPIENT,ADDRESS,AMOUNT
-Recipient 1,WalletAddress1,0.1
-Recipient 2,WalletAddress2,0.2
-Recipient 3,WalletAddress3,0.3
+| RECIPIENT     | ADDRESS           | AMOUNT |
+| ------------- | ----------------- | ------ |
+| Recipient 1   | WalletAddress1    | 0.1    |
+| Recipient 2   | WalletAddress2    | 0.2    |
+| Recipient 3   | WalletAddress3    | 0.3    |
 
 ## License
 
