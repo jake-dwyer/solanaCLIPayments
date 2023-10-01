@@ -4,8 +4,8 @@ const readline = require('readline');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter; 
 
 
-const YOUR_SECRET_KEY = Buffer.from('replace with decoded key', 'base64');  // Replace with your base64-encoded secret key
-const csvFilePath = 'Recipients.csv';  // Replace with your CSV file path
+const YOUR_SECRET_KEY = Buffer.from('YOUR DECODED KEY HERE', 'base64');  // Replace with your base64-encoded secret key
+const csvFilePath = 'Recipients.csv'; 
 
 // Create a CSV writer
 let csvWriter = createCsvWriter({
@@ -15,7 +15,8 @@ let csvWriter = createCsvWriter({
         {id: 'walletAddress', title: 'ADDRESS'},
         {id: 'amountInSol', title: 'AMOUNT'},
         {id: 'transactionId', title: 'TRANSACTION_ID'}
-    ]
+    ],
+    append: true
 });
 
 // Function to send SOL to a given wallet address
@@ -67,6 +68,7 @@ async function main() {
 
     // Execute the transactions and log the results
     let transactionResults = [];
+    const solscanStub = "https://solscan.io/tx/";
     for (let payment of payments) {
         let transactionId = await sendSolToWallet(senderAccount, payment.walletAddress, payment.amountInSol);
         console.log(`Payment of ${payment.amountInSol} SOL sent to ${payment.recipientName} (${payment.walletAddress}). Transaction ID: https://solscan.io/tx/${transactionId}`);
@@ -76,7 +78,7 @@ async function main() {
             recipientName: payment.recipientName,
             walletAddress: payment.walletAddress,
             amountInSol: payment.amountInSol,
-            transactionId: transactionId
+            transactionId: `${solscanStub}${transactionId}`
         });
     }
 
